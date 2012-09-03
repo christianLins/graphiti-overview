@@ -7,11 +7,16 @@ import net.jeeeyul.erd.model.erd.Table
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ICreateContext
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature
+import net.jeeeyul.erd.SharedImages
 
 class CreateColumnFeature extends AbstractCreateFeature {
 	@Inject
 	new(IFeatureProvider fp) {
 		super(fp, "Column", "Adds a new column")
+	}
+	
+	override getCreateImageId() {
+		SharedImages$ICON16::FIELD
 	}
 	
 	override canCreate(ICreateContext context) {

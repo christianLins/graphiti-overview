@@ -24,7 +24,7 @@ import net.jeeeyul.erd.table.UpdateTableFeature
 import net.jeeeyul.erd.common.RemovedModelUpdateFeature
 import net.jeeeyul.erd.table.LayoutTableFeature
 
-class ExerdDiagramFeatureProvider extends DefaultFeatureProvider {
+class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IExerdExtensions
 	
 	@Inject

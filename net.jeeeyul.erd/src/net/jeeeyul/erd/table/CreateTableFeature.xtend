@@ -9,6 +9,7 @@ import org.eclipse.graphiti.features.context.ICreateContext
 import org.eclipse.graphiti.features.context.impl.AddContext
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature
 import org.eclipse.graphiti.mm.pictograms.Diagram
+import net.jeeeyul.erd.SharedImages
 
 class CreateTableFeature extends AbstractCreateFeature {
 	@Inject
@@ -17,6 +18,10 @@ class CreateTableFeature extends AbstractCreateFeature {
 	@Inject
 	new(IFeatureProvider fp) {
 		super(fp, "Table", "Creates a new table")
+	}
+	
+	override getCreateImageId() {
+		SharedImages$ICON16::TABLE
 	}
 	
 	override canCreate(ICreateContext context) {

@@ -17,8 +17,8 @@ import org.eclipse.xtend.lib.Property
 import net.jeeeyul.erd.module.IStyleRegistry
 import net.jeeeyul.erd.module.IDomainModelExtensions
 
-class ExerdModule extends AbstractModule {
-	@Property ExerdDiagramTypeProvider provider;
+class ErdModule extends AbstractModule {
+	@Property ErdDiagramTypeProvider provider;
 	
 	override protected configure() {
 		bind(typeof(IDiagramTypeProvider)).toInstance(provider)
@@ -30,7 +30,7 @@ class ExerdModule extends AbstractModule {
 		bind(typeof(IGaCreateService)).toInstance(Graphiti::gaCreateService)
 		bind(typeof(IStyleRegistry)).to(typeof(StyleRegistryImpl)).in(typeof(Singleton))
 		bind(typeof(IDomainModelExtensions)).to(typeof(DomainModelExtensionsImpl)).in(typeof(Singleton))
-		bind(typeof(ExerdModule)).toInstance(this)
+		bind(typeof(ErdModule)).toInstance(this)
 	}
 	
 	@Provides

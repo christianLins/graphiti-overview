@@ -1,6 +1,6 @@
 package net.jeeeyul.erd.module;
 
-import net.jeeeyul.erd.ExerdModule;
+import net.jeeeyul.erd.ErdModule;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.graphiti.mm.Property;
@@ -16,7 +16,7 @@ public class ExerdExtensionsImpl implements IExerdExtensions {
 	private IPeService peService;
 
 	@Inject
-	private ExerdModule module;
+	private ErdModule module;
 
 	@Override
 	public String getTag(PictogramElement pe) {

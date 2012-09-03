@@ -7,16 +7,16 @@ import net.jeeeyul.erd.tool.ToolBehaviorProvider
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider
 import org.eclipse.graphiti.tb.IToolBehaviorProvider
 
-class ExerdDiagramTypeProvider extends AbstractDiagramTypeProvider {
+class ErdDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	extension Injector injector
 	
 	ArrayList<IToolBehaviorProvider> availableToolBehaviorProviders
 	
 	new() {
-		var module = new ExerdModule()
+		var module = new net.jeeeyul.erd.ErdModule()
 		module.provider = this
 		injector = Guice::createInjector(module)
-		setFeatureProvider(typeof(ExerdDiagramFeatureProvider).instance)
+		setFeatureProvider(typeof(ErdDiagramFeatureProvider).instance)
 	}
 	
 	override getAvailableToolBehaviorProviders() {

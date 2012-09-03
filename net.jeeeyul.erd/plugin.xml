@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.graphiti.ui.diagramTypeProviders">
       <diagramTypeProvider
-            class="net.jeeeyul.erd.ExerdDiagramTypeProvider"
+            class="net.jeeeyul.erd.ErdDiagramTypeProvider"
             id="net.jeeeyul.erd.diagramTypeProvider"
             name="net.jeeeyul.erd.diagramTypeProvider">
          <diagramType
