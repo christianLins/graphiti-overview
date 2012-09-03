@@ -34,7 +34,7 @@ class RemovedModelUpdateFeature extends AbstractUpdateFeature {
 	override updateNeeded(IUpdateContext context) {
 		var model = context.pictogramElement.businessObjectForPictogramElement as EObject
 		if(model != null && model.eIsProxy)
-			return Reason::createTrueReason("모델에서 제거된 것 같습니다:")
+			return Reason::createTrueReason("Business model was removed or can't resolve.")
 		else
 			return Reason::createFalseReason
 	}

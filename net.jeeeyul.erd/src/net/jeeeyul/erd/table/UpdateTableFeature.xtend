@@ -67,7 +67,7 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		
 		if(titleText.value != table.name){
-			return Reason::createTrueReason("테이블의 이름이 변경되었습니다.")
+			return Reason::createTrueReason("Table name was changed in model")
 		}
 		
 		for(eachChild : context.pictogramElement.getAllShapes(false).toList){
