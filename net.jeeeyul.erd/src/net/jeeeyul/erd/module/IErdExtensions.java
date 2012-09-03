@@ -1,6 +1,5 @@
 package net.jeeeyul.erd.module;
 
-import net.jeeeyul.erd.ErdModule;
 import net.jeeeyul.erd.module.internal.ErdExtensionsImpl;
 
 import org.eclipse.emf.common.util.TreeIterator;

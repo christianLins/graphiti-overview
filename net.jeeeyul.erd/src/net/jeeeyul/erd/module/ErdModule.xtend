@@ -1,4 +1,4 @@
-package net.jeeeyul.erd
+package net.jeeeyul.erd.module
 
 import com.google.inject.AbstractModule
 import com.google.inject.Provides
@@ -18,7 +18,7 @@ import org.eclipse.graphiti.services.IPeService
 import org.eclipse.xtend.lib.Property
 
 class ErdModule extends AbstractModule {
-	@Property ErdDiagramTypeProvider provider;
+	@Property IDiagramTypeProvider provider;
 	
 	override protected configure() {
 		bind(typeof(IDiagramTypeProvider)).toInstance(provider)

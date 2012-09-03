@@ -6,6 +6,7 @@ import java.util.ArrayList
 import net.jeeeyul.erd.tool.ToolBehaviorProvider
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider
 import org.eclipse.graphiti.tb.IToolBehaviorProvider
+import net.jeeeyul.erd.module.ErdModule
 
 class ErdDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	extension Injector injector
@@ -13,7 +14,7 @@ class ErdDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	ArrayList<IToolBehaviorProvider> availableToolBehaviorProviders
 	
 	new() {
-		var module = new net.jeeeyul.erd.ErdModule()
+		var module = new ErdModule()
 		module.provider = this
 		injector = Guice::createInjector(module)
 		setFeatureProvider(typeof(ErdDiagramFeatureProvider).instance)
