@@ -1,0 +1,22 @@
+
+@Ecore(nsPrifix = "e", nsURI = "http://jeeeyul.net/erd")
+@GenModel(basePackage = "net.jeeeyul.erd.model")
+package erd
+
+class Table{
+	String name
+	id String uuid
+	contains Column[] columns
+	contains TableRefererence[] references
+}
+
+class TableRefererence{
+	id String uuid
+	String name
+	refers Table targetTable
+}
+
+class Column{
+	id String uuid
+	String name
+}

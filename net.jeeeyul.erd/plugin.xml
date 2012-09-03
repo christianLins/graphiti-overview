@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypeProviders">
+      <diagramTypeProvider
+            class="net.jeeeyul.erd.ExerdDiagramTypeProvider"
+            id="net.jeeeyul.erd.diagramTypeProvider"
+            name="net.jeeeyul.erd.diagramTypeProvider">
+         <diagramType
+               id="net.jeeeyul.erd.diagramType">
+         </diagramType>
+         <imageProvider
+               id="net.jeeeyul.erd.SharedImages">
+         </imageProvider>
+      </diagramTypeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.diagramTypes">
+      <diagramType
+            id="net.jeeeyul.erd.diagramType"
+            name="Jeeeyul&apos;s Mockup"
+            type="net.jeeeyul.erd.diagramType">
+      </diagramType>
+   </extension>
+   <extension
+         point="org.eclipse.graphiti.ui.imageProviders">
+      <imageProvider
+            class="net.jeeeyul.erd.SharedImages"
+            id="net.jeeeyul.erd.SharedImages">
+      </imageProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="net.jeeeyul.erd.model.erd.ErdPackage"
+            uri="http://jeeeyul.net/erd">
+      </package>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+generate-class=SharedImages
+generate-image-preview=true
+generate-package=net.jeeeyul.erd
+generate-src-folder=src-gen
+generate-type=generate-type-graphiti
+image-file-extensions=jpg, gif, png
+mark-derived=true
+monitoring-folder=icons
