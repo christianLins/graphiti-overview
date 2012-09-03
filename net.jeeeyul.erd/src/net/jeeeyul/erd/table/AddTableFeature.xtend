@@ -1,7 +1,6 @@
 package net.jeeeyul.erd.table
 
 import com.google.inject.Inject
-import net.jeeeyul.erd.module.IExerdExtensions
 import net.jeeeyul.erd.module.IStyleRegistry
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.IAddContext
@@ -13,9 +12,10 @@ import org.eclipse.graphiti.services.IGaService
 import org.eclipse.graphiti.services.IPeService
 import org.eclipse.graphiti.util.PredefinedColoredAreas
 import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.module.IErdExtensions
 
 class AddTableFeature extends AbstractAddFeature {
-	@Inject	extension IExerdExtensions
+	@Inject	extension IErdExtensions
 	@Inject extension IPeService
 	@Inject	extension IGaService
 	@Inject extension IStyleRegistry 

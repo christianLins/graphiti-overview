@@ -1,6 +1,7 @@
-package net.jeeeyul.erd.module;
+package net.jeeeyul.erd.module.internal;
 
 import net.jeeeyul.erd.ErdModule;
+import net.jeeeyul.erd.module.IErdExtensions;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.graphiti.mm.Property;
@@ -11,7 +12,7 @@ import org.eclipse.graphiti.services.IPeService;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 
-public class ExerdExtensionsImpl implements IExerdExtensions {
+public class ErdExtensionsImpl implements IErdExtensions {
 	@Inject
 	private IPeService peService;
 

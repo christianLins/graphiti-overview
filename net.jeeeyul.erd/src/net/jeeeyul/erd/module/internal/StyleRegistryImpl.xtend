@@ -1,10 +1,11 @@
-package net.jeeeyul.erd.module
+package net.jeeeyul.erd.module.internal
 
 import org.eclipse.graphiti.mm.algorithms.styles.Style
 import org.eclipse.xtext.xbase.lib.Procedures$Procedure1
 import org.eclipse.graphiti.mm.pictograms.Diagram
 import org.eclipse.graphiti.services.IGaService
 import com.google.inject.Inject
+import net.jeeeyul.erd.module.IStyleRegistry
 
 class StyleRegistryImpl implements IStyleRegistry{
 	@Inject extension IGaService

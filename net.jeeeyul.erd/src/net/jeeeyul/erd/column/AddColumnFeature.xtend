@@ -5,14 +5,14 @@ import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.IAddContext
 import com.google.inject.Inject
 import net.jeeeyul.erd.model.erd.Table
-import net.jeeeyul.erd.module.IExerdExtensions
 import org.eclipse.graphiti.services.IPeCreateService
 import org.eclipse.graphiti.services.IGaService
 import org.eclipse.graphiti.mm.pictograms.ContainerShape
 import net.jeeeyul.erd.model.erd.Column
+import net.jeeeyul.erd.module.IErdExtensions
 
 class AddColumnFeature extends AbstractAddFeature {
-	@Inject extension IExerdExtensions
+	@Inject extension IErdExtensions
 	@Inject extension IPeCreateService
 	@Inject extension IGaService
 	

@@ -3,8 +3,10 @@ package net.jeeeyul.erd
 import com.google.inject.AbstractModule
 import com.google.inject.Provides
 import com.google.inject.Singleton
-import net.jeeeyul.erd.module.DomainModelExtensionsImpl
-import net.jeeeyul.erd.module.StyleRegistryImpl
+import net.jeeeyul.erd.module.IDomainModelExtensions
+import net.jeeeyul.erd.module.IStyleRegistry
+import net.jeeeyul.erd.module.internal.DomainModelExtensionsImpl
+import net.jeeeyul.erd.module.internal.StyleRegistryImpl
 import org.eclipse.graphiti.dt.IDiagramTypeProvider
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.services.Graphiti
@@ -14,8 +16,6 @@ import org.eclipse.graphiti.services.ILinkService
 import org.eclipse.graphiti.services.IPeCreateService
 import org.eclipse.graphiti.services.IPeService
 import org.eclipse.xtend.lib.Property
-import net.jeeeyul.erd.module.IStyleRegistry
-import net.jeeeyul.erd.module.IDomainModelExtensions
 
 class ErdModule extends AbstractModule {
 	@Property ErdDiagramTypeProvider provider;

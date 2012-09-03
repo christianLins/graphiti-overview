@@ -4,7 +4,6 @@ import com.google.inject.Inject
 import net.jeeeyul.erd.model.erd.Column
 import net.jeeeyul.erd.model.erd.Table
 import net.jeeeyul.erd.model.erd.TableRefererence
-import net.jeeeyul.erd.module.IExerdExtensions
 import org.eclipse.graphiti.dt.IDiagramTypeProvider
 import org.eclipse.graphiti.features.context.IAddConnectionContext
 import org.eclipse.graphiti.features.context.IAddContext
@@ -23,9 +22,10 @@ import net.jeeeyul.erd.column.AddColumnFeature
 import net.jeeeyul.erd.table.UpdateTableFeature
 import net.jeeeyul.erd.common.RemovedModelUpdateFeature
 import net.jeeeyul.erd.table.LayoutTableFeature
+import net.jeeeyul.erd.module.IErdExtensions
 
 class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
-	@Inject extension IExerdExtensions
+	@Inject extension IErdExtensions
 	
 	@Inject
 	new(IDiagramTypeProvider diagramTypeProvider) {

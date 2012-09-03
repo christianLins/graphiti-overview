@@ -1,8 +1,9 @@
-package net.jeeeyul.erd.module
+package net.jeeeyul.erd.module.internal
 
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.graphiti.features.context.ICreateConnectionContext
 import org.eclipse.graphiti.features.context.ICreateContext
+import net.jeeeyul.erd.module.IDomainModelExtensions
 
 class DomainModelExtensionsImpl implements IDomainModelExtensions{
 	def dispatch Resource getDomainResource(ICreateContext context){

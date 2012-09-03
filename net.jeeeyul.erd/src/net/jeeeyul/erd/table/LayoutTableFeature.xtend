@@ -1,7 +1,6 @@
 package net.jeeeyul.erd.table
 
 import com.google.inject.Inject
-import net.jeeeyul.erd.module.IExerdExtensions
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ILayoutContext
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature
@@ -10,10 +9,11 @@ import org.eclipse.graphiti.mm.algorithms.Text
 import org.eclipse.graphiti.mm.pictograms.ContainerShape
 import org.eclipse.graphiti.services.IGaService
 import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.module.IErdExtensions
 
 class LayoutTableFeature extends AbstractLayoutFeature {
 	@Inject extension IGaService
-	@Inject extension IExerdExtensions
+	@Inject extension IErdExtensions
 	
 	@Inject
 	new(IFeatureProvider fp) {
@@ -31,13 +31,13 @@ class LayoutTableFeature extends AbstractLayoutFeature {
 		var text = rootShape.getAllShapes.findFirst[it.getTag == "title"].graphicsAlgorithm as Text
 		text.setLocationAndSize(0, 0, rootGa.width, 20)
 		
-		var splitter = rootShape.allShapes.findFirst[it.tag == "splitter"].graphicsAlgorithm as Polyline
+		var splitter = rootShape.getAllShapes.findFirst[it.getTag == "splitter"].graphicsAlgorithm as Polyline
 		splitter.points.head.x = 0
 		splitter.points.head.y = 20
 		splitter.points.last.x = rootGa.width
 		splitter.points.last.y = 20
 		
-		var contentPane = rootShape.getAllShapes.findFirst[it.tag == "column-container"] as ContainerShape
+		var contentPane = rootShape.getAllShapes.findFirst[it.getTag == "column-container"] as ContainerShape
 		var contentPaneRect = contentPane.graphicsAlgorithm
 		contentPaneRect.setLocationAndSize(0, 20, rootGa.width, rootGa.height - 20);
 

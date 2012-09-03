@@ -1,4 +1,4 @@
-package net.jeeeyul.erd.module;
+package net.jeeeyul.erd.module.internal;
 
 import java.util.Collections;
 import java.util.Iterator;
