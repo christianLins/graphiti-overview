@@ -4,7 +4,10 @@ graphiti-overview
 This project was create to evaluate Graphiti capabiites.
 
 ## Build Requirement
+* [Graphiti 0.9](http://www.eclipse.org/graphiti/download.php
+* [PDETools](https://github.com/jeeeyul/pde-tools) (to generate image constants for Graphiti)
 * Xtend
-* (PDETools)[https://github.com/jeeeyul/pde-tools] (to generate image constants for Graphiti)
 * Xcore (Domain Model Generation)
-* Graphiti 0.9
+
+
+You can find Xtend and Xcore on Juno Release Site.
