@@ -28,6 +28,8 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
 import net.jeeeyul.erd.relation.UpdateRelationNameFeature
 import net.jeeeyul.erd.relation.EditCardinalityFeature
 import net.jeeeyul.erd.table.EditTableFeature
+import net.jeeeyul.erd.column.EditColumnFeature
+import net.jeeeyul.erd.column.UpdateColumnFeature
 
 class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IErdExtensions
@@ -86,6 +88,9 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	
 	override getUpdateFeature(IUpdateContext context) {
 		switch(context.pictogramElement.businessObjectForPictogramElement){
+			Column:
+				typeof(UpdateColumnFeature).createInstance
+				
 			Table:
 				typeof(UpdateTableFeature).createInstance
 				
@@ -111,6 +116,9 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 		var bo = context.pictogramElement.businessObjectForPictogramElement
 		
 		switch(bo){
+			Column:
+				typeof(EditColumnFeature).createInstance
+			
 			Table:
 				typeof(EditTableFeature).createInstance
 				

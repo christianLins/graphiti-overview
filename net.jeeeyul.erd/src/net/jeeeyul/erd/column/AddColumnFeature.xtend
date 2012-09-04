@@ -26,10 +26,10 @@ class AddColumnFeature extends AbstractAddFeature {
 		val column = context.newObject as Column
 		var containerShape = context.targetContainer.getShapeByTag("column-container") as ContainerShape
 		var columnShape = containerShape.createShape(true) => [
+			tag = "root"
 			createText => [
 				value = column.name
 			]
-			tag = "title"
 			link(column)
 		]
 		
