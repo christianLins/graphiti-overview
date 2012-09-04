@@ -12,5 +12,10 @@ This project was created to evaluate Graphiti capabiites.
 * [Xcore](http://wiki.eclipse.org/Xcore) (Domain Model Generation)
 * [Google Guice](http://code.google.com/p/google-guice/) (I used bundle shipped with Xtext)
 
-
 You can find [Xtend](http://xtend-lang.org/), [Xtext](http://www.eclipse.org/Xtext/) and [Xcore](http://wiki.eclipse.org/Xcore) on Juno Release Site.
+
+## Just want to launch?
+Use update site below:
+<pre>
+https://github.com/jeeeyul/graphiti-overview/raw/master/net.jeeeyul.erd.updatesite/
+</pre>
