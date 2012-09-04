@@ -21,15 +21,17 @@ class LayoutTableFeature extends AbstractLayoutFeature {
 	}
 	
 	override canLayout(ILayoutContext context) {
-		context.pictogramElement.businessObjectForPictogramElement instanceof Table
+		context.pictogramElement.businessObjectForPictogramElement instanceof Table && context.pictogramElement.tag == "root"
 	}
 	
 	override layout(ILayoutContext context) {
 		var rootShape = context.pictogramElement as ContainerShape
 		var rootGa = rootShape.graphicsAlgorithm
 		
+		rootShape.getShapeByTag("icon").graphicsAlgorithm.setLocationAndSize(3, 0, 20, 20)
+		
 		var text = rootShape.getAllShapes.findFirst[it.getTag == "title"].graphicsAlgorithm as Text
-		text.setLocationAndSize(0, 0, rootGa.width, 20)
+		text.setLocationAndSize(24, 0, rootGa.width - 24, 20)
 		
 		var splitter = rootShape.getAllShapes.findFirst[it.getTag == "splitter"].graphicsAlgorithm as Polyline
 		splitter.points.head.x = 0

@@ -10,10 +10,23 @@ class Table{
 	contains TableRefererence[] references
 }
 
+enum Cardinality{
+	ONE as "1"
+	ONE_OR_MORE as "1+"
+	ONE_OR_NONE as "1?"
+	MANY as "*"
+}
+
 class TableRefererence{
 	id String uuid
 	String name
 	refers Table targetTable
+	
+	@Ecore(defaultValueLiteral="1")
+	Cardinality sourceCardinality
+	
+	@Ecore(defaultValueLiteral="*")
+	Cardinality targetCardinality
 }
 
 class Column{

@@ -24,29 +24,31 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 	}
 	
 	override canUpdate(IUpdateContext context) {
-		context.pictogramElement != null && context.pictogramElement.businessObjectForPictogramElement instanceof Table
+		context.pictogramElement.businessObjectForPictogramElement instanceof Table
 	}
 	
 	override update(IUpdateContext context) {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
-		var titleShape = context.pictogramElement.getAllShapes.findFirst[it.getTag == "title"]
-		var text = titleShape.graphicsAlgorithm as Text
-		text.value = table.name
 		
-		var columnContainer = (context.pictogramElement as ContainerShape).getShapeByTag("column-container") as ContainerShape
+		switch(context.pictogramElement.tag){
+			case "root":{
+				var columnContainer = context.pictogramElement.getShapeByTag("column-container") as ContainerShape
 		
-		context.pictogramElement.link
-
-		for(each : columnContainer.children.toArray){
-			removeIfPossible(each as PictogramElement)
-		}
-		
-		for(c : table.columns){
-			var ac = new AddContext
-			ac.targetContainer = context.pictogramElement as ContainerShape
-			ac.newObject = c
-			var af = featureProvider.getAddFeature(ac)
-			af.execute(ac)
+				for(each : columnContainer.children.toArray){
+					removeIfPossible(each as PictogramElement)
+				}
+				
+				for(c : table.columns){
+					var ac = new AddContext
+					ac.targetContainer = context.pictogramElement as ContainerShape
+					ac.newObject = c
+					var af = featureProvider.getAddFeature(ac)
+					af.execute(ac)
+				}
+				
+				var text = context.pictogramElement.getShapeByTag("title").graphicsAlgorithm as Text
+				text.value = table.name
+			}
 		}
 		
 		return true	
@@ -63,18 +65,24 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 	}
 	
 	override updateNeeded(IUpdateContext context) {
-		var titleText = context.pictogramElement.getAllShapes.findFirst[it.getTag == "title"].graphicsAlgorithm as Text
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		
-		if(titleText.value != table.name){
-			return Reason::createTrueReason("Table name was changed in model")
-		}
-		
-		for(eachChild : context.pictogramElement.getAllShapes(false).toList){
-			var uc = new UpdateContext(eachChild)
-			var uf = featureProvider.getUpdateFeature(uc)
-			if(uf != null && uf.updateNeeded(uc).toBoolean){
-				return uf.updateNeeded(uc)
+		switch(context.pictogramElement.tag){
+			case "root":{
+				for(eachChild : context.pictogramElement.getAllShapes(false).toList){
+					var uc = new UpdateContext(eachChild)
+					var uf = featureProvider.getUpdateFeature(uc)
+					if(uf != null && uf.updateNeeded(uc).toBoolean){
+						return uf.updateNeeded(uc)
+					}
+				}
+			}
+			
+			case "title":{
+				var titleText = context.pictogramElement.graphicsAlgorithm as Text
+				if(titleText.value != table.name){
+					return Reason::createTrueReason("Table name was changed in model")
+				}
 			}
 		}
 		

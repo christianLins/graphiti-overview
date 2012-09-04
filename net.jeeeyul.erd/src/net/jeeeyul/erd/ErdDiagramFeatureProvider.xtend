@@ -1,28 +1,33 @@
 package net.jeeeyul.erd
 
 import com.google.inject.Inject
+import net.jeeeyul.erd.column.AddColumnFeature
+import net.jeeeyul.erd.column.CreateColumnFeature
+import net.jeeeyul.erd.common.RemovedModelUpdateFeature
 import net.jeeeyul.erd.model.erd.Column
 import net.jeeeyul.erd.model.erd.Table
 import net.jeeeyul.erd.model.erd.TableRefererence
+import net.jeeeyul.erd.module.IErdExtensions
+import net.jeeeyul.erd.relation.AddRelationFeature
+import net.jeeeyul.erd.relation.CreateRelationFeatue
+import net.jeeeyul.erd.relation.EditRelationNameFeature
+import net.jeeeyul.erd.table.AddTableFeature
+import net.jeeeyul.erd.table.CreateTableFeature
+import net.jeeeyul.erd.table.LayoutTableFeature
+import net.jeeeyul.erd.table.UpdateTableFeature
 import org.eclipse.graphiti.dt.IDiagramTypeProvider
 import org.eclipse.graphiti.features.context.IAddConnectionContext
 import org.eclipse.graphiti.features.context.IAddContext
+import org.eclipse.graphiti.features.context.IDirectEditingContext
 import org.eclipse.graphiti.features.context.ILayoutContext
 import org.eclipse.graphiti.features.context.IMoveShapeContext
 import org.eclipse.graphiti.features.context.IResizeShapeContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.Diagram
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
-import net.jeeeyul.erd.table.CreateTableFeature
-import net.jeeeyul.erd.column.CreateColumnFeature
-import net.jeeeyul.erd.relation.CreateRelationFeatue
-import net.jeeeyul.erd.table.AddTableFeature
-import net.jeeeyul.erd.relation.AddRelationFeature
-import net.jeeeyul.erd.column.AddColumnFeature
-import net.jeeeyul.erd.table.UpdateTableFeature
-import net.jeeeyul.erd.common.RemovedModelUpdateFeature
-import net.jeeeyul.erd.table.LayoutTableFeature
-import net.jeeeyul.erd.module.IErdExtensions
+import net.jeeeyul.erd.relation.UpdateRelationNameFeature
+import net.jeeeyul.erd.relation.EditCardinalityFeature
+import net.jeeeyul.erd.table.EditTableFeature
 
 class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IErdExtensions
@@ -60,8 +65,8 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	}
 	
 	override getResizeShapeFeature(IResizeShapeContext context) {
-		switch(context){
-			case context.pictogramElement.businessObjectForPictogramElement instanceof Column:
+		switch(context.pictogramElement.businessObjectForPictogramElement){
+			Column:
 				null
 				
 			default:
@@ -70,8 +75,8 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	}
 	
 	override getMoveShapeFeature(IMoveShapeContext context) {
-		switch(context){
-			case context.pictogramElement.businessObjectForPictogramElement instanceof Column:
+		switch(context.pictogramElement.businessObjectForPictogramElement){
+			Column:
 				null
 				
 			default:
@@ -80,9 +85,12 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	}
 	
 	override getUpdateFeature(IUpdateContext context) {
-		switch(context){
-			case context.pictogramElement.businessObjectForPictogramElement instanceof Table:
+		switch(context.pictogramElement.businessObjectForPictogramElement){
+			Table:
 				typeof(UpdateTableFeature).createInstance
+				
+			TableRefererence:
+				typeof(UpdateRelationNameFeature).createInstance
 				
 			default:
 				typeof(RemovedModelUpdateFeature).createInstance
@@ -90,12 +98,34 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	}
 	
 	override getLayoutFeature(ILayoutContext context) {
-		switch(context){
-			case context.pictogramElement.businessObjectForPictogramElement instanceof Table:
+		switch(context.pictogramElement.businessObjectForPictogramElement){
+			Table:
 				typeof(LayoutTableFeature).createInstance
 				
 			default:
 				super.getLayoutFeature(context)
 		}
 	}
+	
+	override getDirectEditingFeature(IDirectEditingContext context) {
+		var bo = context.pictogramElement.businessObjectForPictogramElement
+		
+		switch(bo){
+			Table:
+				typeof(EditTableFeature).createInstance
+				
+			TableRefererence case context.pictogramElement.tag == "text":
+				typeof(EditRelationNameFeature).createInstance
+				
+			TableRefererence case context.pictogramElement.tag == "source-cardinality":
+				typeof(EditCardinalityFeature).createInstance	
+				
+			TableRefererence case context.pictogramElement.tag == "target-cardinality":
+				typeof(EditCardinalityFeature).createInstance	
+					
+			default:
+				super.getDirectEditingFeature(context)
+		}
+	}
+	
 }

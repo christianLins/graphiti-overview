@@ -1,5 +1,6 @@
 package net.jeeeyul.erd.module;
 
+import net.jeeeyul.erd.model.erd.Cardinality;
 import net.jeeeyul.erd.module.internal.ErdExtensionsImpl;
 
 import org.eclipse.emf.common.util.TreeIterator;
@@ -38,7 +39,7 @@ public interface IErdExtensions {
 	 *            {@link PictogramElement} to iterate.
 	 * @return an iterator for given {@link PictogramElement}.
 	 */
-	public TreeIterator<Shape> getAllShapes(PictogramElement pe);
+	public TreeIterator<PictogramElement> getAllShapes(PictogramElement pe);
 
 	/**
 	 * Retrieves a tree iterator for given {@link PictogramElement}.
@@ -48,7 +49,7 @@ public interface IErdExtensions {
 	 * @param includeRoot
 	 * @return an iterator.
 	 */
-	public TreeIterator<Shape> getAllShapes(PictogramElement pe,
+	public TreeIterator<PictogramElement> getAllShapes(PictogramElement pe,
 			boolean includeRoot);
 
 	/**
@@ -63,7 +64,7 @@ public interface IErdExtensions {
 	 * @see #setTag(PictogramElement, String)
 	 * @see #getTag(PictogramElement)
 	 */
-	public Shape getShapeByTag(Shape root, String tag);
+	public PictogramElement getShapeByTag(PictogramElement root, String tag);
 
 	/**
 	 * create a instance with {@link Injector} of {@link ErdModule}.
@@ -73,4 +74,9 @@ public interface IErdExtensions {
 	 * @return instance.
 	 */
 	public <T> T createInstance(Class<T> type);
+	
+	public Cardinality[] getCardinalites();
+
+	public Cardinality getCardinalityWithName(String name);
 }
+

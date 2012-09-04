@@ -8,10 +8,12 @@ import org.eclipse.graphiti.features.impl.AbstractAddFeature
 import org.eclipse.graphiti.services.IGaCreateService
 import org.eclipse.graphiti.services.IPeCreateService
 import net.jeeeyul.erd.model.erd.TableRefererence
+import net.jeeeyul.erd.module.IErdExtensions
 
 class AddRelationFeature extends AbstractAddFeature {
 	@Inject extension IPeCreateService
 	@Inject extension IGaCreateService
+	@Inject extension IErdExtensions
 	
 	@Inject
 	new(IFeatureProvider fp) {
@@ -20,6 +22,7 @@ class AddRelationFeature extends AbstractAddFeature {
 	
 	override add(IAddContext context) {
 		val acc = context as IAddConnectionContext
+		val reference = acc.newObject as TableRefererence
 		
 		var con = diagram.createFreeFormConnection => [
 			start = acc.sourceAnchor
@@ -28,11 +31,39 @@ class AddRelationFeature extends AbstractAddFeature {
 			createPolyline => [
 				lineWidth = 2
 			]
+			tag = "root"
 			
 			createConnectionDecorator(true, 0.5, true) => [
 				createText => [
-					value = "Hello"
+					value = reference.name
 				]
+				link(acc.newObject)
+				tag = "text"
+			]
+			
+			createConnectionDecorator(true, 0.1, true) => [
+				createText => [
+					value = reference.sourceCardinality.literal
+				]
+				link(acc.newObject)
+				tag = "source-cardinality"
+			]
+			
+			createConnectionDecorator(true, 0.9, true) => [
+				createText => [
+					value = reference.targetCardinality.literal
+				]
+				link(acc.newObject)
+				tag = "target-cardinality"
+			]
+			
+			createConnectionDecorator(false, 1.0, true) => [
+				createPlainPolyline(newArrayList(
+					-10, 7, 0, 0, -10, -7
+				) as int[]) => [
+					lineWidth = 2
+				]
+				link(acc.newObject)
 			]
 			
 			link(acc.newObject)

@@ -15,6 +15,9 @@ class RemovedModelUpdateFeature extends AbstractUpdateFeature {
 	}
 	
 	override canUpdate(IUpdateContext context) {
+		if(context.pictogramElement.active && context.pictogramElement.businessObjectForPictogramElement == null){
+			return true
+		}
 		if(context.pictogramElement.businessObjectForPictogramElement instanceof EObject){
 			return (context.pictogramElement.businessObjectForPictogramElement as EObject).eIsProxy
 		}
@@ -32,8 +35,12 @@ class RemovedModelUpdateFeature extends AbstractUpdateFeature {
 	}
 	
 	override updateNeeded(IUpdateContext context) {
+		if(!context.pictogramElement.active){
+			return Reason::createFalseReason
+		}
+		
 		var model = context.pictogramElement.businessObjectForPictogramElement as EObject
-		if(model != null && model.eIsProxy)
+		if(model == null || model.eIsProxy)
 			return Reason::createTrueReason("Business model was removed or can't resolve.")
 		else
 			return Reason::createFalseReason
