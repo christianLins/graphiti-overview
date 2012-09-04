@@ -3,6 +3,8 @@ graphiti-overview
 
 This project was created to evaluate Graphiti capabiites.
 
+!! Test Graphiti capabilites only, This is not a product !!
+
 ![Screen Shot](https://raw.github.com/jeeeyul/graphiti-overview/master/net.jeeeyul.erd.resource/screen-shot.png)
 
 ## Build Requirement SDKs
