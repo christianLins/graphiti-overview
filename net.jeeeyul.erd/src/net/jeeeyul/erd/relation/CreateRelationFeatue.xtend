@@ -18,7 +18,9 @@ class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	
 	override canCreate(ICreateConnectionContext context) {
 		context.sourcePictogramElement.businessObjectForPictogramElement instanceof Table &&
-		context.targetPictogramElement.businessObjectForPictogramElement instanceof Table
+		context.targetPictogramElement.businessObjectForPictogramElement instanceof Table &&
+		context.sourcePictogramElement.businessObjectForPictogramElement !=
+		context.targetPictogramElement.businessObjectForPictogramElement
 	}
 	
 	override canStartConnection(ICreateConnectionContext context) {

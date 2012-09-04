@@ -23,20 +23,25 @@ class UpdateColumnFeature extends AbstractUpdateFeature {
 
 	override update(IUpdateContext context) {
 		var col = context.pictogramElement.businessObjectForPictogramElement as Column
+	
 		switch(context.pictogramElement.tag) {
-			case "root": {
+			case "column-root": {
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				text.value = col.name
-				return true
+				
+				true
 			}
+			
+			default:
+				false
 		}
-		return false
 	}
 
 	override updateNeeded(IUpdateContext context) {
 		var col = context.pictogramElement.businessObjectForPictogramElement as Column
+		
 		switch(context.pictogramElement.tag) {
-			case "root": {
+			case "column-root": {
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				if(text.value != col.name) {
 					Reason::createTrueReason("name was changed")
@@ -44,7 +49,8 @@ class UpdateColumnFeature extends AbstractUpdateFeature {
 					Reason::createFalseReason
 				}
 			}
-		default:
+			
+			default:
 				Reason::createFalseReason
 		}
 	}

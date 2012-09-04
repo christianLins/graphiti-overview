@@ -11,6 +11,8 @@ import net.jeeeyul.erd.model.erd.Table
 import net.jeeeyul.erd.module.IErdExtensions
 import org.eclipse.graphiti.util.LocationInfo
 import org.eclipse.graphiti.mm.pictograms.Shape
+import org.eclipse.graphiti.features.context.IPictogramElementContext
+import net.jeeeyul.erd.model.erd.Column
 
 class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	@Inject extension IErdExtensions
@@ -34,6 +36,14 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 			return new LocationInfo(titleShape as Shape, titleShape.graphicsAlgorithm)
 		}
 		return locationInfo
+	}
+	
+	override getContextButtonPad(IPictogramElementContext context) {
+		if(context.pictogramElement.businessObjectForLinkedPictogramElement instanceof Column){
+			return null
+		}else{
+			super.getContextButtonPad(context)
+		}
 	}
 	
 }

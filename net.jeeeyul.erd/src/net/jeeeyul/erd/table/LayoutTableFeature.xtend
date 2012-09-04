@@ -1,6 +1,8 @@
 package net.jeeeyul.erd.table
 
 import com.google.inject.Inject
+import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.module.IErdExtensions
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ILayoutContext
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature
@@ -8,8 +10,6 @@ import org.eclipse.graphiti.mm.algorithms.Polyline
 import org.eclipse.graphiti.mm.algorithms.Text
 import org.eclipse.graphiti.mm.pictograms.ContainerShape
 import org.eclipse.graphiti.services.IGaService
-import net.jeeeyul.erd.model.erd.Table
-import net.jeeeyul.erd.module.IErdExtensions
 
 class LayoutTableFeature extends AbstractLayoutFeature {
 	@Inject extension IGaService
@@ -39,13 +39,11 @@ class LayoutTableFeature extends AbstractLayoutFeature {
 		splitter.points.last.x = rootGa.width
 		splitter.points.last.y = 20
 		
-		var contentPane = rootShape.getAllShapes.findFirst[it.getTag == "column-container"] as ContainerShape
-		var contentPaneRect = contentPane.graphicsAlgorithm
-		contentPaneRect.setLocationAndSize(0, 20, rootGa.width, rootGa.height - 20);
 
+		var columns = rootShape.getAllShapes.filter[it.tag == "column-root"].toList
 		var y = 20
-		for(each : contentPane.children){
-			each.graphicsAlgorithm.setLocationAndSize(5, y, contentPaneRect.width - 10, 20);
+		for(each : columns){
+			each.graphicsAlgorithm.setLocationAndSize(5, y, rootGa.width - 10, 20);
 			y = y + 20;
 		}
 		

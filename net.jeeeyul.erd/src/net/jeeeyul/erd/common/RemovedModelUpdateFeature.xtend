@@ -7,6 +7,7 @@ import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.features.context.impl.RemoveContext
 import org.eclipse.graphiti.features.impl.AbstractUpdateFeature
 import org.eclipse.graphiti.features.impl.Reason
+import org.eclipse.graphiti.mm.pictograms.PictogramElement
 
 class RemovedModelUpdateFeature extends AbstractUpdateFeature {
 	@Inject
@@ -28,7 +29,9 @@ class RemovedModelUpdateFeature extends AbstractUpdateFeature {
 		var rc = new RemoveContext(context.pictogramElement)
 		var removeFeature = featureProvider.getRemoveFeature(rc)
 		if(removeFeature != null && removeFeature.canExecute(rc)){
+			var container = context.pictogramElement.eContainer as PictogramElement
 			removeFeature.execute(rc)
+			layoutPictogramElement(container)
 			return true
 		}
 		false

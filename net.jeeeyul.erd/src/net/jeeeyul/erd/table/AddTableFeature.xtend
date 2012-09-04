@@ -61,12 +61,6 @@ class AddTableFeature extends AbstractAddFeature {
 				createPolyline(newArrayList(0, 20, 0, 20) as int[])
 			]
 			
-			createContainerShape(false) => [
-				it.tag = "column-container"
-				createInvisibleRectangle()
-				link(table)
-			]
-	
 			createChopboxAnchor()
 						
 			link(table)

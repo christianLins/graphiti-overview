@@ -1,6 +1,8 @@
 package net.jeeeyul.erd.table
 
 import com.google.inject.Inject
+import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.module.IErdExtensions
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.IRemoveFeature
 import org.eclipse.graphiti.features.context.IUpdateContext
@@ -12,8 +14,6 @@ import org.eclipse.graphiti.features.impl.Reason
 import org.eclipse.graphiti.mm.algorithms.Text
 import org.eclipse.graphiti.mm.pictograms.ContainerShape
 import org.eclipse.graphiti.mm.pictograms.PictogramElement
-import net.jeeeyul.erd.model.erd.Table
-import net.jeeeyul.erd.module.IErdExtensions
 
 class UpdateTableFeature extends AbstractUpdateFeature {
 	@Inject extension IErdExtensions
@@ -32,9 +32,9 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 		
 		switch(context.pictogramElement.tag){
 			case "root":{
-				var columnContainer = context.pictogramElement.getShapeByTag("column-container") as ContainerShape
-		
-				for(each : columnContainer.children.toArray){
+				var columns = context.pictogramElement.getAllShapes.filter[it.tag == "column-root"].toList
+					
+				for(each : columns){
 					removeIfPossible(each as PictogramElement)
 				}
 				
