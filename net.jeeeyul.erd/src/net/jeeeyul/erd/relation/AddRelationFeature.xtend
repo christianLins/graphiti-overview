@@ -31,14 +31,14 @@ class AddRelationFeature extends AbstractAddFeature {
 			createPolyline => [
 				lineWidth = 2
 			]
-			tag = "root"
+			tag = "relation-root"
 			
 			createConnectionDecorator(true, 0.5, true) => [
 				createText => [
 					value = reference.name
 				]
 				link(acc.newObject)
-				tag = "text"
+				tag = "relation-text"
 			]
 			
 			createConnectionDecorator(true, 0.1, true) => [
@@ -46,7 +46,7 @@ class AddRelationFeature extends AbstractAddFeature {
 					value = reference.sourceCardinality.literal
 				]
 				link(acc.newObject)
-				tag = "source-cardinality"
+				tag = "relation-source-cardinality"
 			]
 			
 			createConnectionDecorator(true, 0.9, true) => [
@@ -54,7 +54,7 @@ class AddRelationFeature extends AbstractAddFeature {
 					value = reference.targetCardinality.literal
 				]
 				link(acc.newObject)
-				tag = "target-cardinality"
+				tag = "relation-target-cardinality"
 			]
 			
 			createConnectionDecorator(false, 1.0, true) => [

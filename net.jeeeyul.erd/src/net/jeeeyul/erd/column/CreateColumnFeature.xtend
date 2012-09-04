@@ -31,7 +31,15 @@ class CreateColumnFeature extends AbstractCreateFeature {
 		
 		var table = context.targetContainer.businessObjectForPictogramElement as Table
 		table.columns.add(column)
-		context.addGraphicalRepresentation(column)
+		
+		val colShape = context.addGraphicalRepresentation(column)
+		
+		featureProvider.directEditingInfo => [
+			active = true
+			mainPictogramElement = colShape
+			pictogramElement = colShape
+			graphicsAlgorithm = colShape.graphicsAlgorithm
+		]
 
 		return newArrayList(column)
 	}

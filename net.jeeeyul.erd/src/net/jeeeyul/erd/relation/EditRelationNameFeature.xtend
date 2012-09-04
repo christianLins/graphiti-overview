@@ -19,7 +19,7 @@ class EditRelationNameFeature extends AbstractDirectEditingFeature {
 
 	override canDirectEdit(IDirectEditingContext context) {
 		context.pictogramElement.businessObjectForPictogramElement instanceof TableRefererence &&
-		context.pictogramElement.tag == "text"
+		context.pictogramElement.tag == "relation-text"
 	}
 
 	override setValue(String value, IDirectEditingContext context) {

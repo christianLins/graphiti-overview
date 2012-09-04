@@ -10,10 +10,13 @@ import org.eclipse.graphiti.features.context.impl.AddContext
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature
 import org.eclipse.graphiti.mm.pictograms.Diagram
 import net.jeeeyul.erd.SharedImages
+import net.jeeeyul.erd.module.IErdExtensions
 
 class CreateTableFeature extends AbstractCreateFeature {
 	@Inject
 	extension IDomainModelExtensions
+	
+	@Inject extension IErdExtensions
 	
 	@Inject
 	new(IFeatureProvider fp) {
@@ -42,7 +45,14 @@ class CreateTableFeature extends AbstractCreateFeature {
 		
 		var addContext = new AddContext(context, table)
 		
-		addContext.addGraphicalRepresentation(table)
+		val tablePE = addContext.addGraphicalRepresentation(table)
+		
+		featureProvider.directEditingInfo => [
+			it.mainPictogramElement = tablePE
+			it.pictogramElement = tablePE.getShapeByTag("table-title")
+			it.graphicsAlgorithm = tablePE.getShapeByTag("table-title").graphicsAlgorithm
+			active = true
+		]
 		
 		return newArrayList(table)	
 	}

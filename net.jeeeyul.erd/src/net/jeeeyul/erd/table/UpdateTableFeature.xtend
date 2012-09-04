@@ -31,7 +31,7 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		
 		switch(context.pictogramElement.tag){
-			case "root":{
+			case "table-root":{
 				var columns = context.pictogramElement.getAllShapes.filter[it.tag == "column-root"].toList
 					
 				for(each : columns){
@@ -46,7 +46,7 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 					af.execute(ac)
 				}
 				
-				var text = context.pictogramElement.getShapeByTag("title").graphicsAlgorithm as Text
+				var text = context.pictogramElement.getShapeByTag("table-title").graphicsAlgorithm as Text
 				text.value = table.name
 			}
 		}
@@ -68,7 +68,7 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		
 		switch(context.pictogramElement.tag){
-			case "root":{
+			case "table-root":{
 				for(eachChild : context.pictogramElement.getAllShapes(false).toList){
 					var uc = new UpdateContext(eachChild)
 					var uf = featureProvider.getUpdateFeature(uc)
@@ -78,7 +78,7 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 				}
 			}
 			
-			case "title":{
+			case "table-title":{
 				var titleText = context.pictogramElement.graphicsAlgorithm as Text
 				if(titleText.value != table.name){
 					return Reason::createTrueReason("Table name was changed in model")

@@ -29,7 +29,7 @@ class AddTableFeature extends AbstractAddFeature {
 		val table = context.newObject as Table
 		
 		val width = if(context.width != -1) context.width else 100
-		val height = if(context.height != -1) context.height else 40 
+		val height = if(context.height != -1) context.height else 100 
 		
 		var containerShape = createContainerShape(context.targetContainer, true) =>[
 			createPlainRoundedRectangle(12, 12) => [
@@ -39,15 +39,15 @@ class AddTableFeature extends AbstractAddFeature {
 				]
 				setLocationAndSize(context.x, context.y, width, height)
 			]
-			tag = "root"
+			tag = "table-root"
 			
 			createShape(false) => [
-				it.tag = "icon"
+				it.tag = "table-icon"
 				createImage(SharedImages$ICON16::TABLE)
 			]
 			
 			createShape(false) => [
-				it.tag = "title"
+				it.tag = "table-title"
 				createText => [
 					it.value = table.name
 					horizontalAlignment = Orientation::ALIGNMENT_LEFT
@@ -57,7 +57,7 @@ class AddTableFeature extends AbstractAddFeature {
 			]
 			
 			createShape(false) =>[
-				it.tag = "splitter"
+				it.tag = "table-splitter"
 				createPolyline(newArrayList(0, 20, 0, 20) as int[])
 			]
 			

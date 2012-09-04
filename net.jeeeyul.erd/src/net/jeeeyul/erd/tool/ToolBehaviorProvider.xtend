@@ -1,22 +1,24 @@
 package net.jeeeyul.erd.tool
 
 import com.google.inject.Inject
-import org.eclipse.graphiti.dt.IDiagramTypeProvider
-import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider
 import net.jeeeyul.erd.ErdDiagramTypeProvider
-import org.eclipse.graphiti.mm.pictograms.PictogramElement
-import org.eclipse.graphiti.util.ILocationInfo
-import org.eclipse.graphiti.services.ILinkService
-import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.SharedImages$ICON16
 import net.jeeeyul.erd.module.IErdExtensions
-import org.eclipse.graphiti.util.LocationInfo
-import org.eclipse.graphiti.mm.pictograms.Shape
+import org.eclipse.graphiti.dt.IDiagramTypeProvider
 import org.eclipse.graphiti.features.context.IPictogramElementContext
-import net.jeeeyul.erd.model.erd.Column
+import org.eclipse.graphiti.features.context.impl.CreateConnectionContext
+import org.eclipse.graphiti.mm.pictograms.AnchorContainer
+import org.eclipse.graphiti.mm.pictograms.PictogramElement
+import org.eclipse.graphiti.mm.pictograms.Shape
+import org.eclipse.graphiti.services.IPeService
+import org.eclipse.graphiti.tb.ContextButtonEntry
+import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider
+import org.eclipse.graphiti.util.ILocationInfo
+import org.eclipse.graphiti.util.LocationInfo
 
 class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	@Inject extension IErdExtensions
-	@Inject extension ILinkService 
+	@Inject extension IPeService
 	
 	@Inject
 	new(IDiagramTypeProvider diagramTypeProvider) {
@@ -29,21 +31,34 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	}
 	
 	override getLocationInfo(PictogramElement pe, ILocationInfo locationInfo) {
-		if(pe.businessObjectForLinkedPictogramElement instanceof Table){
-			var table = pe.businessObjectForLinkedPictogramElement as Table
-			var pes = diagramTypeProvider.diagram.getPictogramElements(table)
-			var titleShape = pes.findFirst[it.tag == "title"]
+		if(pe.tag == "table-root"){
+			var titleShape = pe.getShapeByTag("table-title")
 			return new LocationInfo(titleShape as Shape, titleShape.graphicsAlgorithm)
 		}
 		return locationInfo
 	}
 	
 	override getContextButtonPad(IPictogramElementContext context) {
-		if(context.pictogramElement.businessObjectForLinkedPictogramElement instanceof Column){
-			return null
-		}else{
-			super.getContextButtonPad(context)
+		var data = super.getContextButtonPad(context)
+		
+		switch(context.pictogramElement.tag){
+			case "column-root":
+				return null
+				
+			case "table-root":{
+				val ccc = new CreateConnectionContext => [
+					it.sourcePictogramElement = context.pictogramElement
+					it.sourceAnchor = (context.pictogramElement as AnchorContainer).chopboxAnchor
+				]
+				
+				data.domainSpecificContextButtons += new ContextButtonEntry(null, context) =>[
+					text = "Drag it to create a reference"
+					iconId = SharedImages$ICON16::CREATE_RELATION
+					addDragAndDropFeature(featureProvider.createConnectionFeatures.findFirst[it.isAvailable(ccc) && it.canStartConnection(ccc)])
+				]
+			}
 		}
+		
+		return data
 	}
-	
 }

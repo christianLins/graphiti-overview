@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <p:Palette xmlns:p="http://jeeeyul.net/pde-tools" fieldName="ICONS" folder="/net.jeeeyul.erd/icons">
   <subPalettes fieldName="ICON16" folder="/net.jeeeyul.erd/icons/icon16">
+    <imageFiles fieldName="CREATE_RELATION" file="/net.jeeeyul.erd/icons/icon16/create-relation.gif"/>
     <imageFiles fieldName="FIELD" file="/net.jeeeyul.erd/icons/icon16/field.gif"/>
     <imageFiles fieldName="TABLE" file="/net.jeeeyul.erd/icons/icon16/table.gif"/>
   </subPalettes>

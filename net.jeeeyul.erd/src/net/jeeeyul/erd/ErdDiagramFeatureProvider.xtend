@@ -122,18 +122,17 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 			Table:
 				typeof(EditTableFeature).createInstance
 				
-			TableRefererence case context.pictogramElement.tag == "text":
+			TableRefererence case context.pictogramElement.tag == "relation-text":
 				typeof(EditRelationNameFeature).createInstance
 				
-			TableRefererence case context.pictogramElement.tag == "source-cardinality":
+			TableRefererence case context.pictogramElement.tag == "relation-source-cardinality":
 				typeof(EditCardinalityFeature).createInstance	
 				
-			TableRefererence case context.pictogramElement.tag == "target-cardinality":
+			TableRefererence case context.pictogramElement.tag == "relation-target-cardinality":
 				typeof(EditCardinalityFeature).createInstance	
 					
 			default:
 				super.getDirectEditingFeature(context)
 		}
 	}
-	
 }

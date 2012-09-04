@@ -25,17 +25,17 @@ class UpdateRelationNameFeature extends AbstractUpdateFeature {
 		var ref = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 		
 		switch(context.pictogramElement.tag){
-			case "text" :{
+			case "realtion-text" :{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				text.value = ref.name
 			}
 			
-			case "source-cardinality":{
+			case "relation-source-cardinality":{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				text.value = ref.sourceCardinality.literal
 			}
 			
-			case "target-cardinality":{
+			case "relation-target-cardinality":{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				text.value = ref.targetCardinality.literal
 			}
@@ -51,7 +51,7 @@ class UpdateRelationNameFeature extends AbstractUpdateFeature {
 		var ref = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 	
 		switch(context.pictogramElement.tag){
-			case "text" :{
+			case "relation-text" :{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				if(ref.name != text.value){
 					Reason::createTrueReason("Reference name was changed")
@@ -61,7 +61,7 @@ class UpdateRelationNameFeature extends AbstractUpdateFeature {
 				}
 			}
 			
-			case "source-cardinality":{
+			case "relation-source-cardinality":{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				if(ref.sourceCardinality.literal != text.value){
 					Reason::createTrueReason("Source Cardinality was changed")
@@ -71,7 +71,7 @@ class UpdateRelationNameFeature extends AbstractUpdateFeature {
 				}
 			}
 			
-			case "target-cardinality":{
+			case "relation-target-cardinality":{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				if(ref.targetCardinality.literal != text.value){
 					Reason::createTrueReason("Target Cardinality was changed")
