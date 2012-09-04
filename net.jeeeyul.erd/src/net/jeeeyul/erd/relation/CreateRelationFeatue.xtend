@@ -41,7 +41,7 @@ class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 		
 		var reference = ErdFactory::eINSTANCE.createTableRefererence => [
 			uuid = UUID::randomUUID.toString
-			name = "New Referernce"
+			name = "New Reference"
 			it.targetTable = targetTable
 		]
 		sourceTable.references += reference
