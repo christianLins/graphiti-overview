@@ -10,6 +10,7 @@ import org.eclipse.graphiti.mm.pictograms.Connection
 import net.jeeeyul.erd.model.erd.Table
 import net.jeeeyul.erd.model.erd.ErdFactory
 import net.jeeeyul.erd.module.IErdExtensions
+import net.jeeeyul.erd.SharedImages
 
 class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	@Inject extension IErdExtensions
@@ -17,6 +18,10 @@ class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	@Inject
 	new(IFeatureProvider fp) {
 		super(fp, "Relation", "Create New Relation")
+	}
+	
+	override getCreateImageId() {
+		SharedImages$ICON16::CREATE_RELATION
 	}
 	
 	override canCreate(ICreateConnectionContext context) {
