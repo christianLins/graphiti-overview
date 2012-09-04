@@ -1,7 +1,7 @@
 graphiti-overview
 =================
 
-This project was create to evaluate Graphiti capabiites.
+This project was created to evaluate Graphiti capabiites.
 
 ![Screen Shot](https://raw.github.com/jeeeyul/graphiti-overview/master/net.jeeeyul.erd.resource/screen-shot.png)
 
