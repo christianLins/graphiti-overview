@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="net.jeeeyul.erd.feature"
-      label="Graphti ERD Feature"
+      label="Graphiti ERD Feature"
       version="1.0.0.qualifier"
       provider-name="jeeeyul@gmail.com">
 

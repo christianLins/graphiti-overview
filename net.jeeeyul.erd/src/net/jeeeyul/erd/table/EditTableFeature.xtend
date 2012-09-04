@@ -24,6 +24,8 @@ class EditTableFeature extends AbstractDirectEditingFeature {
 	override setValue(String value, IDirectEditingContext context) {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		table.setName(value.trim)
+		
+		updatePictogramElement(context.pictogramElement)
 	}
 	
 	override canUndo(IContext context) {

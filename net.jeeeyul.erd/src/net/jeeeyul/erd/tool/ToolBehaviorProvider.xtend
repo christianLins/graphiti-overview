@@ -52,7 +52,8 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 				]
 				
 				data.domainSpecificContextButtons += new ContextButtonEntry(null, context) =>[
-					text = "Drag it to create a reference"
+					text = "Creates a reference"
+					description = "Drag it to create a reference"
 					iconId = SharedImages$ICON16::CREATE_RELATION
 					addDragAndDropFeature(featureProvider.createConnectionFeatures.findFirst[it.isAvailable(ccc) && it.canStartConnection(ccc)])
 				]
