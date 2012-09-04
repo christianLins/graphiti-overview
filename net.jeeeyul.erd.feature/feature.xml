@@ -2,7 +2,7 @@
 <feature
       id="net.jeeeyul.erd.feature"
       label="Graphti ERD Feature"
-      version="1.5.0.qualifier"
+      version="1.0.0.qualifier"
       provider-name="jeeeyul@gmail.com">
 
    <description url="http://www.example.com/description">
@@ -20,6 +20,18 @@
    <url>
       <discovery label="Eclipse Juno Release" url="http://download.eclipse.org/releases/juno"/>
    </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.graphiti"/>
+      <import plugin="org.eclipse.graphiti.mm"/>
+      <import plugin="org.eclipse.graphiti.ui"/>
+      <import plugin="org.eclipse.xtend.lib"/>
+      <import plugin="com.google.guava"/>
+      <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
+   </requires>
 
    <plugin
          id="net.jeeeyul.erd"
