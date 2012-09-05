@@ -59,7 +59,7 @@ class AddRelationFeature extends AbstractAddFeature {
 			
 			createConnectionDecorator(false, 1.0, true) => [
 				createPlainPolyline(newArrayList(
-					-10, 7, 0, 0, -10, -7
+					-10, 7, 1, 0, -10, -7
 				) as int[]) => [
 					lineWidth = 2
 				]
