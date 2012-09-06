@@ -25,7 +25,7 @@ class AddColumnFeature extends AbstractAddFeature {
 		val table = context.targetContainer.businessObjectForPictogramElement as Table
 		val column = context.newObject as Column
 		var containerShape = context.targetContainer.getShapeByTag("table-root") as ContainerShape
-		var columnShape = containerShape.createShape(true) => [
+		var columnShape = containerShape.createContainerShape(true) => [
 			tag = "column-root"
 			createText => [
 				value = column.name

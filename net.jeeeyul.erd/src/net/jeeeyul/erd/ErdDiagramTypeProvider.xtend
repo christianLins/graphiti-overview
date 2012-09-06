@@ -17,7 +17,7 @@ class ErdDiagramTypeProvider extends AbstractDiagramTypeProvider {
 		var module = new ErdModule()
 		module.provider = this
 		injector = Guice::createInjector(module)
-		setFeatureProvider(typeof(ErdDiagramFeatureProvider).instance)
+		setFeatureProvider(typeof(ErdFeatureProvider).instance)
 	}
 	
 	override getAvailableToolBehaviorProviders() {

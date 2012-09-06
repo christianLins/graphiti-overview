@@ -30,8 +30,9 @@ import org.eclipse.graphiti.features.context.IResizeShapeContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.Diagram
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
+import net.jeeeyul.erd.column.AddColumnOnColumnFeature
 
-class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
+class ErdFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IErdExtensions
 	
 	@Inject
@@ -55,10 +56,13 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 			case context.targetContainer instanceof Diagram && context.newObject instanceof Table:
 				typeof(AddTableFeature).singleTone
 				
-			case context.targetContainer.businessObjectForPictogramElement instanceof Table && context.newObject instanceof Column:
+			case context.targetContainer.tag =="table-root" && context.newObject instanceof Column:
 				typeof(AddColumnFeature).singleTone
+				
+			case context.targetContainer.tag == "column-root" && context.newObject instanceof Column:
+				typeof(AddColumnOnColumnFeature).singleTone
 			
-			case context instanceof IAddConnectionContext && context.newObject instanceof TableRefererence:
+			IAddConnectionContext case context.newObject instanceof TableRefererence:
 				typeof(AddRelationFeature).singleTone
 			
 			default:

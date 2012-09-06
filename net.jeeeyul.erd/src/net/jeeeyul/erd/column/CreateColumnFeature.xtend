@@ -8,8 +8,11 @@ import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ICreateContext
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature
 import net.jeeeyul.erd.SharedImages
+import net.jeeeyul.erd.module.IErdExtensions
+import net.jeeeyul.erd.model.erd.Column
 
 class CreateColumnFeature extends AbstractCreateFeature {
+	@Inject extension IErdExtensions
 	@Inject
 	new(IFeatureProvider fp) {
 		super(fp, "Column", "Adds a new column")
@@ -20,7 +23,8 @@ class CreateColumnFeature extends AbstractCreateFeature {
 	}
 	
 	override canCreate(ICreateContext context) {
-		context.targetContainer.businessObjectForPictogramElement instanceof Table
+		context.targetContainer.tag == "table-root" ||
+		context.targetContainer.tag == "column-root"
 	}
 	
 	override create(ICreateContext context) {
@@ -29,7 +33,17 @@ class CreateColumnFeature extends AbstractCreateFeature {
 			uuid = UUID::randomUUID.toString
 		]
 		
-		var table = context.targetContainer.businessObjectForPictogramElement as Table
+		var bo = context.targetContainer.businessObjectForPictogramElement;
+		var Table table = null
+	
+		switch(bo){
+			Table:
+				table = bo
+			
+			Column:
+				table = bo.eContainer as Table
+		}
+		
 		table.columns.add(column)
 		
 		val colShape = context.addGraphicalRepresentation(column)
