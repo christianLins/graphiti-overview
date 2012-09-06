@@ -3,6 +3,8 @@ package net.jeeeyul.erd
 import com.google.inject.Inject
 import net.jeeeyul.erd.column.AddColumnFeature
 import net.jeeeyul.erd.column.CreateColumnFeature
+import net.jeeeyul.erd.column.EditColumnFeature
+import net.jeeeyul.erd.column.UpdateColumnFeature
 import net.jeeeyul.erd.common.RemovedModelUpdateFeature
 import net.jeeeyul.erd.model.erd.Column
 import net.jeeeyul.erd.model.erd.Table
@@ -10,9 +12,12 @@ import net.jeeeyul.erd.model.erd.TableRefererence
 import net.jeeeyul.erd.module.IErdExtensions
 import net.jeeeyul.erd.relation.AddRelationFeature
 import net.jeeeyul.erd.relation.CreateRelationFeatue
+import net.jeeeyul.erd.relation.EditCardinalityFeature
 import net.jeeeyul.erd.relation.EditRelationNameFeature
+import net.jeeeyul.erd.relation.UpdateRelationNameFeature
 import net.jeeeyul.erd.table.AddTableFeature
 import net.jeeeyul.erd.table.CreateTableFeature
+import net.jeeeyul.erd.table.EditTableFeature
 import net.jeeeyul.erd.table.LayoutTableFeature
 import net.jeeeyul.erd.table.UpdateTableFeature
 import org.eclipse.graphiti.dt.IDiagramTypeProvider
@@ -24,14 +29,8 @@ import org.eclipse.graphiti.features.context.IMoveShapeContext
 import org.eclipse.graphiti.features.context.IResizeShapeContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.Diagram
-import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
-import net.jeeeyul.erd.relation.UpdateRelationNameFeature
-import net.jeeeyul.erd.relation.EditCardinalityFeature
-import net.jeeeyul.erd.table.EditTableFeature
-import net.jeeeyul.erd.column.EditColumnFeature
-import net.jeeeyul.erd.column.UpdateColumnFeature
 
-class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
+class ErdDiagramFeatureProvider extends BaseFeatureProvider {
 	@Inject extension IErdExtensions
 	
 	@Inject
@@ -136,11 +135,5 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 		}
 	}
 	
-	def <T> getSingleTone(Class<T> type){
-		return type.createSingleTone() as T
-	}
 	
-	def Object create type.createInstance createSingleTone(Class type){
-		println("An instance has been created for " + type.name)
-	}
 }
