@@ -72,11 +72,15 @@ public interface IErdExtensions {
 	 * @param type
 	 *            type to create an instance.
 	 * @return instance.
+	 * 
+	 * @deprecated use {@link #getSingleTone(Class)} instead.
 	 */
+	@Deprecated
 	public <T> T createInstance(Class<T> type);
-	
+
 	public Cardinality[] getCardinalites();
 
 	public Cardinality getCardinalityWithName(String name);
-}
 
+	public <T> T getSingleTone(Class<T> type);
+}

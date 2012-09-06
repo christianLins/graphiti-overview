@@ -29,8 +29,9 @@ import org.eclipse.graphiti.features.context.IMoveShapeContext
 import org.eclipse.graphiti.features.context.IResizeShapeContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.Diagram
+import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
 
-class ErdDiagramFeatureProvider extends BaseFeatureProvider {
+class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IErdExtensions
 	
 	@Inject
