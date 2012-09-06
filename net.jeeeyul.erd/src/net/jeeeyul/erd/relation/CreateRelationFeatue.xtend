@@ -2,15 +2,15 @@ package net.jeeeyul.erd.relation
 
 import com.google.inject.Inject
 import java.util.UUID
+import net.jeeeyul.erd.SharedImages$ICON16
+import net.jeeeyul.erd.model.erd.ErdFactory
+import net.jeeeyul.erd.model.erd.Table
+import net.jeeeyul.erd.module.IErdExtensions
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ICreateConnectionContext
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature
 import org.eclipse.graphiti.mm.pictograms.Connection
-import net.jeeeyul.erd.model.erd.Table
-import net.jeeeyul.erd.model.erd.ErdFactory
-import net.jeeeyul.erd.module.IErdExtensions
-import net.jeeeyul.erd.SharedImages
 
 class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	@Inject extension IErdExtensions
@@ -18,6 +18,9 @@ class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	@Inject
 	new(IFeatureProvider fp) {
 		super(fp, "Relation", "Create New Relation")
+	}
+	
+	override startConnecting() {
 	}
 	
 	override getCreateImageId() {
