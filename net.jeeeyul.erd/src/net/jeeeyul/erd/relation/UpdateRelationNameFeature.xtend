@@ -25,7 +25,7 @@ class UpdateRelationNameFeature extends AbstractUpdateFeature {
 		var ref = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 		
 		switch(context.pictogramElement.tag){
-			case "realtion-text" :{
+			case "relation-text" :{
 				var text = context.pictogramElement.graphicsAlgorithm as Text
 				text.value = ref.name
 			}

@@ -25,7 +25,7 @@ class EditCardinalityFeature extends AbstractDirectEditingFeature {
 	}
 	
 	override setValue(String value, IDirectEditingContext context) {
-		var isSource = context.pictogramElement.tag == "source-cardinality"
+		var isSource = context.pictogramElement.tag == "relation-source-cardinality"
 		var ref = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 		
 		if(isSource){
@@ -36,7 +36,7 @@ class EditCardinalityFeature extends AbstractDirectEditingFeature {
 	}
 	
 	override getInitialValue(IDirectEditingContext context) {
-		var isSource = context.pictogramElement.tag == "source-cardinality"
+		var isSource = context.pictogramElement.tag == "relation-source-cardinality"
 		var ref = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 		if(isSource){
 			ref.sourceCardinality.name
