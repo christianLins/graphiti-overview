@@ -41,25 +41,25 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	
 	override getCreateFeatures() {
 		return newArrayList(
-			typeof(CreateTableFeature).createInstance, 
-			typeof(CreateColumnFeature).createInstance
+			typeof(CreateTableFeature).singleTone, 
+			typeof(CreateColumnFeature).singleTone
 		)
 	}
 	
 	override getCreateConnectionFeatures() {
-		return newArrayList(typeof(CreateRelationFeatue).createInstance)
+		return newArrayList(typeof(CreateRelationFeatue).singleTone)
 	}
 	
 	override getAddFeature(IAddContext context) {
 		switch(context){
 			case context.targetContainer instanceof Diagram && context.newObject instanceof Table:
-				typeof(AddTableFeature).createInstance
+				typeof(AddTableFeature).singleTone
 				
 			case context.targetContainer.businessObjectForPictogramElement instanceof Table && context.newObject instanceof Column:
-				typeof(AddColumnFeature).createInstance
+				typeof(AddColumnFeature).singleTone
 			
 			case context instanceof IAddConnectionContext && context.newObject instanceof TableRefererence:
-				typeof(AddRelationFeature).createInstance
+				typeof(AddRelationFeature).singleTone
 			
 			default:
 				super.getAddFeature(context)
@@ -89,23 +89,23 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 	override getUpdateFeature(IUpdateContext context) {
 		switch(context.pictogramElement.businessObjectForPictogramElement){
 			Column:
-				typeof(UpdateColumnFeature).createInstance
+				typeof(UpdateColumnFeature).singleTone
 				
 			Table:
-				typeof(UpdateTableFeature).createInstance
+				typeof(UpdateTableFeature).singleTone
 				
 			TableRefererence:
-				typeof(UpdateRelationNameFeature).createInstance
+				typeof(UpdateRelationNameFeature).singleTone
 				
 			default:
-				typeof(RemovedModelUpdateFeature).createInstance
+				typeof(RemovedModelUpdateFeature).singleTone
 		}
 	}
 	
 	override getLayoutFeature(ILayoutContext context) {
 		switch(context.pictogramElement.businessObjectForPictogramElement){
 			Table:
-				typeof(LayoutTableFeature).createInstance
+				typeof(LayoutTableFeature).singleTone
 				
 			default:
 				super.getLayoutFeature(context)
@@ -117,22 +117,30 @@ class ErdDiagramFeatureProvider extends DefaultFeatureProvider {
 		
 		switch(bo){
 			Column:
-				typeof(EditColumnFeature).createInstance
+				typeof(EditColumnFeature).singleTone
 			
 			Table:
-				typeof(EditTableFeature).createInstance
+				typeof(EditTableFeature).singleTone
 				
 			TableRefererence case context.pictogramElement.tag == "relation-text":
-				typeof(EditRelationNameFeature).createInstance
+				typeof(EditRelationNameFeature).singleTone
 				
 			TableRefererence case context.pictogramElement.tag == "relation-source-cardinality":
-				typeof(EditCardinalityFeature).createInstance	
+				typeof(EditCardinalityFeature).singleTone	
 				
 			TableRefererence case context.pictogramElement.tag == "relation-target-cardinality":
-				typeof(EditCardinalityFeature).createInstance	
+				typeof(EditCardinalityFeature).singleTone	
 					
 			default:
 				super.getDirectEditingFeature(context)
 		}
+	}
+	
+	def <T> getSingleTone(Class<T> type){
+		return type.createSingleTone() as T
+	}
+	
+	def Object create type.createInstance createSingleTone(Class type){
+		println("An instance has been created for " + type.name)
 	}
 }
