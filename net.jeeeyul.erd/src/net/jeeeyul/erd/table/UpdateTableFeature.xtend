@@ -49,6 +49,11 @@ class UpdateTableFeature extends AbstractUpdateFeature {
 				var text = context.pictogramElement.getShapeByTag("table-title").graphicsAlgorithm as Text
 				text.value = table.name
 			}
+			
+			case "table-title":{
+				var text = context.pictogramElement.getShapeByTag("table-title").graphicsAlgorithm as Text
+				text.value = table.name
+			}
 		}
 		
 		return true	

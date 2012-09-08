@@ -25,6 +25,8 @@ class EditRelationNameFeature extends AbstractDirectEditingFeature {
 	override setValue(String value, IDirectEditingContext context) {
 		var tableReference = context.pictogramElement.businessObjectForPictogramElement as TableRefererence
 		tableReference.setName(value.trim)
+		
+		context.pictogramElement.updatePictogramElement
 	}
 	
 	override getEditingType() {

@@ -33,6 +33,8 @@ class EditCardinalityFeature extends AbstractDirectEditingFeature {
 		}else{
 			ref.targetCardinality = getCardinalityWithName(value)
 		}
+		
+		context.pictogramElement.updatePictogramElement
 	}
 	
 	override getInitialValue(IDirectEditingContext context) {

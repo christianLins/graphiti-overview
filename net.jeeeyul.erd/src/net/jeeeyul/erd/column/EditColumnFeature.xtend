@@ -23,5 +23,6 @@ class EditColumnFeature extends AbstractDirectEditingFeature {
 	override setValue(String value, IDirectEditingContext context) {
 		var col = context.pictogramElement.businessObjectForPictogramElement as Column
 		col.name = value.trim
+		context.pictogramElement.updatePictogramElement
 	}
 }
