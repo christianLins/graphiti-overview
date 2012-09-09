@@ -83,4 +83,6 @@ public interface IErdExtensions {
 	public Cardinality getCardinalityWithName(String name);
 
 	public <T> T getSingleTone(Class<T> type);
+	
+	public PictogramElement findContainerByTag(PictogramElement context, String tag);
 }

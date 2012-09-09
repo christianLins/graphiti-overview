@@ -8,6 +8,7 @@ import net.jeeeyul.erd.module.ErdModule;
 import net.jeeeyul.erd.module.IErdExtensions;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.mm.Property;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.IPeService;
@@ -90,5 +91,19 @@ public class ErdExtensionsImpl implements IErdExtensions {
 	@Override
 	public void setTag(PictogramElement pe, String value) {
 		peService.setPropertyValue(pe, "tag", value);
+	}
+
+	@Override
+	public PictogramElement findContainerByTag(PictogramElement context,
+			String tag) {
+		EObject finger = context;
+		while (finger instanceof PictogramElement) {
+			if (tag.equals(getTag((PictogramElement) finger))) {
+				return (PictogramElement) finger;
+			}
+			finger = finger.eContainer();
+		}
+
+		return null;
 	}
 }

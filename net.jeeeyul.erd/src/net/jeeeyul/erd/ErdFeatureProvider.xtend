@@ -2,8 +2,10 @@ package net.jeeeyul.erd
 
 import com.google.inject.Inject
 import net.jeeeyul.erd.column.AddColumnFeature
+import net.jeeeyul.erd.column.AddColumnOnColumnFeature
 import net.jeeeyul.erd.column.CreateColumnFeature
 import net.jeeeyul.erd.column.EditColumnFeature
+import net.jeeeyul.erd.column.RemoveColumnFeature
 import net.jeeeyul.erd.column.UpdateColumnFeature
 import net.jeeeyul.erd.common.RemovedModelUpdateFeature
 import net.jeeeyul.erd.model.erd.Column
@@ -26,11 +28,11 @@ import org.eclipse.graphiti.features.context.IAddContext
 import org.eclipse.graphiti.features.context.IDirectEditingContext
 import org.eclipse.graphiti.features.context.ILayoutContext
 import org.eclipse.graphiti.features.context.IMoveShapeContext
+import org.eclipse.graphiti.features.context.IRemoveContext
 import org.eclipse.graphiti.features.context.IResizeShapeContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.Diagram
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
-import net.jeeeyul.erd.column.AddColumnOnColumnFeature
 
 class ErdFeatureProvider extends DefaultFeatureProvider {
 	@Inject extension IErdExtensions
@@ -140,5 +142,14 @@ class ErdFeatureProvider extends DefaultFeatureProvider {
 		}
 	}
 	
+	override getRemoveFeature(IRemoveContext context) {
+		switch(context.pictogramElement.tag){
+			case "column-root":
+				typeof(RemoveColumnFeature).singleTone
+			
+			default:
+				super.getRemoveFeature(context)			
+		}
+	}
 	
-}
+} 

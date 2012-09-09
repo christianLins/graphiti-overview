@@ -47,6 +47,8 @@ class LayoutTableFeature extends AbstractLayoutFeature {
 			y = y + 20;
 		}
 		
+		println("layout")
+		
 		if(rootGa.height < y+5){
 			rootGa.height = y+5;
 		}
