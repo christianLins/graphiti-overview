@@ -31,11 +31,19 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	}
 	
 	override getLocationInfo(PictogramElement pe, ILocationInfo locationInfo) {
-		if(pe.tag == "table-root"){
-			var titleShape = pe.getShapeByTag("table-title")
-			return new LocationInfo(titleShape as Shape, titleShape.graphicsAlgorithm)
+		switch(pe.tag){
+			case "table-root":{
+				var titleShape = pe.getShapeByTag("table-title")
+				new LocationInfo(titleShape as Shape, titleShape.graphicsAlgorithm)
+			}
+			
+			case "column-root":{
+				new LocationInfo(pe as Shape, pe.graphicsAlgorithm)
+			}
+			
+			default:
+				locationInfo
 		}
-		return locationInfo
 	}
 	
 	override getContextButtonPad(IPictogramElementContext context) {
