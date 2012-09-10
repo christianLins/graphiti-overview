@@ -37,5 +37,15 @@
             uri="http://jeeeyul.net/erd">
       </package>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            class="net.jeeeyul.erd.wizard.NewERDDiagramWizard"
+            hasPages="true"
+            icon="icons/icon16/table.gif"
+            id="net.jeeeyul.erd.wizard"
+            name="ERD Diagram Wizard">
+      </wizard>
+   </extension>
 
 </plugin>
