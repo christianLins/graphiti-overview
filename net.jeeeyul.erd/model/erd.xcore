@@ -8,6 +8,8 @@ class Table{
 	id String uuid
 	contains Column[] columns
 	contains TableRefererence[] references
+	
+	refers TableRefererence[] referees opposite targetTable
 }
 
 enum Cardinality{
@@ -20,7 +22,7 @@ enum Cardinality{
 class TableRefererence{
 	id String uuid
 	String name
-	refers Table targetTable
+	refers Table targetTable opposite referees
 	
 	@Ecore(defaultValueLiteral="1")
 	Cardinality sourceCardinality
