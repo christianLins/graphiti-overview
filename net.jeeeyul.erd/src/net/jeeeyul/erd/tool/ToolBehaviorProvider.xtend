@@ -73,7 +73,7 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	}
 	
 	override getLineSelectionWidth(Polyline polyline) {
-		polyline.lineWidth + 5
+		polyline.lineWidth + 10
 	}
 	
 }
