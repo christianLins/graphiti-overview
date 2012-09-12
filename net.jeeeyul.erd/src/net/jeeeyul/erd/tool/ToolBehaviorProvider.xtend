@@ -15,6 +15,7 @@ import org.eclipse.graphiti.tb.ContextButtonEntry
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider
 import org.eclipse.graphiti.util.ILocationInfo
 import org.eclipse.graphiti.util.LocationInfo
+import org.eclipse.graphiti.mm.algorithms.Polyline
 
 class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 	@Inject extension IErdExtensions
@@ -70,4 +71,9 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		
 		return data
 	}
+	
+	override getLineSelectionWidth(Polyline polyline) {
+		polyline.lineWidth + 5
+	}
+	
 }

@@ -9,11 +9,15 @@ import net.jeeeyul.erd.module.IErdExtensions
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ICreateConnectionContext
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext
+import org.eclipse.graphiti.features.context.impl.CreateConnectionContext
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature
+import org.eclipse.graphiti.mm.pictograms.AnchorContainer
 import org.eclipse.graphiti.mm.pictograms.Connection
+import org.eclipse.graphiti.services.IPeService
 
 class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 	@Inject extension IErdExtensions
+	@Inject extension IPeService
 	
 	@Inject
 	new(IFeatureProvider fp) {
@@ -27,18 +31,46 @@ class CreateRelationFeatue extends AbstractCreateConnectionFeature {
 		SharedImages$ICON16::CREATE_RELATION
 	}
 	
+	def ICreateConnectionContext transformed(ICreateConnectionContext context){
+		var ccc = new CreateConnectionContext() => [
+			sourcePictogramElement = context.sourcePictogramElement
+			targetPictogramElement = context.targetPictogramElement
+			sourceLocation = context.sourceLocation
+			targetLocation = context.targetLocation
+			sourceAnchor = context.sourceAnchor
+			targetAnchor = context.targetAnchor
+		]
+		
+		if(context.sourcePictogramElement.tag == "column-root"){
+			ccc.sourcePictogramElement = context.sourcePictogramElement.findContainerByTag("table-root")
+			ccc.sourceAnchor = (ccc.sourcePictogramElement as AnchorContainer).chopboxAnchor
+		}
+		
+		if(context.targetPictogramElement.tag == "column-root"){
+			ccc.targetPictogramElement = context.targetPictogramElement.findContainerByTag("table-root")
+			ccc.targetAnchor = (ccc.targetPictogramElement as AnchorContainer).chopboxAnchor
+		}
+		
+		return ccc
+	}
+	
 	override canCreate(ICreateConnectionContext context) {
-		context.sourcePictogramElement.businessObjectForPictogramElement instanceof Table &&
-		context.targetPictogramElement.businessObjectForPictogramElement instanceof Table &&
-		context.sourcePictogramElement.businessObjectForPictogramElement !=
-		context.targetPictogramElement.businessObjectForPictogramElement
+		var ctx = context.transformed()
+		
+		ctx.sourcePictogramElement.businessObjectForPictogramElement instanceof Table &&
+		ctx.targetPictogramElement.businessObjectForPictogramElement instanceof Table &&
+		ctx.sourcePictogramElement.businessObjectForPictogramElement !=
+		ctx.targetPictogramElement.businessObjectForPictogramElement
 	}
 	
 	override canStartConnection(ICreateConnectionContext context) {
-		context.sourcePictogramElement.businessObjectForPictogramElement instanceof Table
+		var ctx = context.transformed()
+		ctx.sourcePictogramElement.businessObjectForPictogramElement instanceof Table
 	}
 	
-	override create(ICreateConnectionContext context) {
+	override create(ICreateConnectionContext originalContext) {
+		var context = originalContext.transformed
+		
 		val sourceTable = context.sourcePictogramElement.businessObjectForPictogramElement as Table
 		val targetTable = context.targetPictogramElement.businessObjectForPictogramElement as Table
 		
