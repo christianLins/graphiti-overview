@@ -36,5 +36,4 @@ class EditTableFeature extends AbstractDirectEditingFeature {
 		var table = context.pictogramElement.businessObjectForPictogramElement as Table
 		return table.name
 	}
-	
 }

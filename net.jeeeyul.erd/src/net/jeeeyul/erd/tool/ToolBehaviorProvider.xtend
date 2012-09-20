@@ -72,6 +72,18 @@ class ToolBehaviorProvider extends DefaultToolBehaviorProvider {
 		return data
 	}
 	
+	override getChopboxAnchorArea(PictogramElement pe) {
+		switch(pe.tag){
+			case "column-root":{
+				pe.findContainerByTag("table-root").graphicsAlgorithm
+			}
+			
+			default:{
+				super.getChopboxAnchorArea(pe)
+			}
+		}
+	}
+	
 	override getLineSelectionWidth(Polyline polyline) {
 		polyline.lineWidth + 10
 	}

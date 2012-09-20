@@ -35,5 +35,4 @@ class AddColumnOnColumnFeature extends AbstractAddFeature{
 	override canAdd(IAddContext context) {
 		context.targetContainer.tag == "column-root"
 	}
-	
 }
