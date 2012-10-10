@@ -31,13 +31,6 @@
       </imageProvider>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.generated_package">
-      <package
-            class="net.jeeeyul.erd.model.erd.ErdPackage"
-            uri="http://jeeeyul.net/erd">
-      </package>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <wizard
             class="net.jeeeyul.erd.wizard.NewERDDiagramWizard"
