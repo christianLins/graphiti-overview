@@ -1,0 +1,30 @@
+SMAP
+CreateTableFeature.java
+Xtend
+*S Xtend
+*F
++ 0 CreateTableFeature.xtend
+src/net/jeeeyul/erd/table/CreateTableFeature.xtend
+*L
+23:38
+27:42
+31:46,2
+35:51,3
+36:54
+37:55,3
+39:58,4
+40:62,3
+41:65
+39:66,4
+35:70,3
+44:73,3
+46:76,2
+48:78
+50:79,4
+51:83
+52:84,2
+53:86,3
+54:89
+50:90,3
+57:93
+*E

@@ -1,0 +1,28 @@
+SMAP
+NewERDDiagramWizard.java
+Xtend
+*S Xtend
+*F
++ 0 NewERDDiagramWizard.xtend
+src/net/jeeeyul/erd/wizard/NewERDDiagramWizard.xtend
+*L
+11:19,2
+12:21
+16:25
+17:26,2
+18:28
+17:29
+21:30
+24:31,2
+26:34,2
+27:36
+28:37,2
+29:39
+30:40
+28:41
+26:42
+33:45
+34:46
+35:47
+38:52
+*E

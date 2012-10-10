@@ -1,0 +1,19 @@
+SMAP
+AddColumnOnColumnFeature.java
+Xtend
+*S Xtend
+*F
++ 0 AddColumnOnColumnFeature.xtend
+src/net/jeeeyul/erd/column/AddColumnOnColumnFeature.xtend
+*L
+19:33
+23:37,3
+24:40,12
+26:52,3
+27:55
+28:56,2
+26:58,3
+31:61,3
+36:67,3
+35:70
+*E

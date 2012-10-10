@@ -1,0 +1,30 @@
+SMAP
+EditCardinalityFeature.java
+Xtend
+*S Xtend
+*F
++ 0 EditCardinalityFeature.xtend
+src/net/jeeeyul/erd/relation/EditCardinalityFeature.xtend
+*L
+16:25
+20:29
+24:33,8
+23:41
+28:45,3
+29:48,3
+31:51
+32:52,2
+31:54
+34:55,2
+31:57
+37:58,2
+40:63,2
+41:65,3
+42:68,3
+43:71,2
+44:73,2
+43:75,2
+47:77,2
+43:79,2
+40:81,3
+*E

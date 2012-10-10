@@ -1,0 +1,14 @@
+SMAP
+RemoveColumnFeature.java
+Xtend
+*S Xtend
+*F
++ 0 RemoveColumnFeature.xtend
+src/net/jeeeyul/erd/column/RemoveColumnFeature.xtend
+*L
+17:20
+21:24,3
+25:30,2
+26:32
+25:33
+*E

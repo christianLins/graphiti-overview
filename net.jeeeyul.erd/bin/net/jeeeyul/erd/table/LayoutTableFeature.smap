@@ -1,0 +1,32 @@
+SMAP
+LayoutTableFeature.java
+Xtend
+*S Xtend
+*F
++ 0 LayoutTableFeature.xtend
+src/net/jeeeyul/erd/table/LayoutTableFeature.xtend
+*L
+20:35
+24:39,11
+23:50
+28:54,2
+29:56
+31:57,3
+33:60,3
+34:63,3
+36:66,3
+37:69,3
+38:72,3
+39:75,4
+40:79,3
+43:82,10
+44:92
+45:93,2
+46:95,4
+47:99,2
+45:101,2
+50:103,4
+51:107,2
+50:109
+53:110
+*E

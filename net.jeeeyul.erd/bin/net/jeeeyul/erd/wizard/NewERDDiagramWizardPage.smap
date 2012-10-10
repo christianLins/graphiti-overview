@@ -1,0 +1,15 @@
+SMAP
+NewERDDiagramWizardPage.java
+Xtend
+*S Xtend
+*F
++ 0 NewERDDiagramWizardPage.xtend
+src/net/jeeeyul/erd/wizard/NewERDDiagramWizardPage.xtend
+*L
+8:12
+9:13
+12:17,2
+13:19,2
+14:21,2
+12:23,3
+*E
